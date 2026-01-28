@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:padding="20dp"
+    tools:context=".MainActivity">
+
+
+    <!-- PAGE TITLE -->
+    <TextView
+        android:id="@+id/tvMainTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Smart Attendance"
+        android:textColor="@color/text_light"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true" />
+
+    <!-- HISTORY ICON (TOP RIGHT) -->
+    <ImageView
+        android:id="@+id/btnHistory"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_history"
+        android:contentDescription="History"
+        android:clickable="true"
+        android:focusable="true"
+        app:tint="@color/text_light" />
+
+
+    <!-- CONTENT SCROLL -->
+    <ScrollView
+        android:id="@+id/scrollMain"
+        android:layout_below="@id/tvMainTitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+
+
+            <!-- 1️⃣ SCANNING CARD -->
+            <LinearLayout
+                android:id="@+id/cardScanning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@drawable/btn_green"
+                android:padding="24dp"
+                android:layout_marginBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvScanStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Scanning for nearby sessions…"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_light"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp"/>
+
+                    <ProgressBar
+                        android:id="@+id/progressBarScanning"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tvDetectedUUID"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Detected UUIDs will appear here…"
+                        android:textColor="@color/text_light"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- 2️⃣ COURSE INFO CARD -->
+            <LinearLayout
+                android:id="@+id/cardCourseInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_green"
+                android:padding="24dp"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:id="@+id/tvCourseInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="No active session detected yet"
+                    android:textColor="@color/text_light"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+
+            <!-- 3️⃣ FACE VERIFICATION (initially hidden) -->
+            <LinearLayout
+                android:id="@+id/cardFaceVerification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:background="@drawable/btn_green"
+                android:gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvFaceTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Face Verification"
+                    android:textColor="@color/text_light"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="6dp"/>
+
+                <TextView
+                    android:id="@+id/tvFaceHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Align your face inside the circle to verify."
+                    android:textColor="@color/text_light"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="16dp"/>
+
+                <FrameLayout
+                    android:id="@+id/facePreviewContainer"
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:background="@drawable/face_circle_border"
+                    android:clipToOutline="true"
+                    android:layout_marginBottom="16dp">
+
+                    <androidx.camera.view.PreviewView
+                        android:id="@+id/previewFace"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tvFaceStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Waiting for course enrollment…"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_light"/>
+            </LinearLayout>
+
+            <!-- 4️⃣ LOG ATTENDANCE BUTTON -->
+            <Button
+                android:id="@+id/btnLogAttendance"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Log Attendance"
+                android:textAllCaps="false"
+                android:background="@drawable/btn_green"
+                android:textColor="@color/text_light"
+                android:enabled="false"/>
+
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/btn_white_rounded"
+                android:text="Logout"
+                android:textColor="@android:color/black"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:layout_marginBottom="16dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- 5️⃣ OVERLAY -->
+    <FrameLayout
+        android:id="@+id/overlayContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#004D40"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/overlayCard"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_green"
+            android:padding="24dp"
+            android:layout_gravity="bottom">
+
+            <TextView
+                android:id="@+id/overlayTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Action Required"
+                android:textColor="@color/text_light"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/overlayMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please enable Bluetooth and Location services."
+                android:textColor="@color/text_light"
+                android:textSize="16sp"
+                android:layout_marginBottom="20dp"/>
+
+            <Button
+                android:id="@+id/btnOpenSettings"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Open Settings"
+                android:background="@drawable/btn_green"
+                android:textColor="@color/text_light"
+                android:textAllCaps="false"/>
+        </LinearLayout>
+    </FrameLayout>
+
+</RelativeLayout>

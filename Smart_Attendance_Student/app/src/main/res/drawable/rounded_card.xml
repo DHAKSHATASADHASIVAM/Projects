@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Transparent white for glass look -->
+    <solid android:color="#40FFFFFF" />
+
+    <!-- Soft white border -->
+    <stroke
+        android:width="2dp"
+        android:color="#80FFFFFF" />
+
+    <corners android:radius="18dp" />
+
+    <!-- Light inner padding for depth -->
+    <padding
+        android:left="16dp"
+        android:top="16dp"
+        android:right="16dp"
+        android:bottom="16dp"/>
+</shape>

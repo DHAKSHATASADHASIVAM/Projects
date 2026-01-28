@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:padding="24dp"
+    tools:context=".SignupActivity">
+
+    <!-- Page Title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Account"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp" />
+
+    <!-- SIGNUP CARD -->
+    <LinearLayout
+        android:id="@+id/signupCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTitle"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:background="@drawable/btn_green">
+
+        <!-- Email Spinner -->
+        <Spinner
+            android:id="@+id/spinnerEmail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:spinnerMode="dropdown"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@null"
+            android:background="@drawable/spinner_dark_green"
+            android:popupBackground="@drawable/spinner_dark_green"/>
+
+        <!-- First Name -->
+        <EditText
+            android:id="@+id/etFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="12dp"
+            android:hint="First Name"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:focusable="false"
+            android:clickable="false"
+            android:longClickable="false"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Last Name -->
+        <EditText
+            android:id="@+id/etLastName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="12dp"
+            android:hint="Last Name"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:focusable="false"
+            android:clickable="false"
+            android:longClickable="false"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Password -->
+        <EditText
+            android:id="@+id/etCurrentPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="12dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Course Spinner -->
+        <Spinner
+            android:id="@+id/spinnerCourse"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:spinnerMode="dropdown"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="@null"
+            android:background="@drawable/spinner_dark_green"
+            android:popupBackground="@drawable/spinner_dark_green"/>
+
+        <!-- Sign Up Button -->
+        <Button
+            android:id="@+id/btnSignup"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Sign Up"
+            android:enabled="false"
+            android:background="@drawable/btn_white_rounded"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Back Button -->
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Back"
+            android:padding="8dp"
+            android:background="@drawable/btn_white_rounded"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Progress bar -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
