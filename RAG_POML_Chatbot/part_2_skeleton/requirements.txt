@@ -1,0 +1,8 @@
+python-dotenv
+langchain
+langchain-groq
+chromadb
+sentence-transformers
+PyPDF2
+langchain-text-splitters
+poml
