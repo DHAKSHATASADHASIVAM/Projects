@@ -1,0 +1,64 @@
+{
+  "taxi_duration": {
+    "target": "duration_min",
+    "log_target": true,
+    "train_rows": 320000,
+    "train_seconds": 30.42,
+    "data_source": "NYC TLC",
+    "n_features": 18,
+    "metrics": {
+      "mae": 2.9842,
+      "rmse": 4.3879,
+      "r2": 0.7616,
+      "mape": 24.2967,
+      "median_abs_error": 2.148,
+      "p90_abs_error": 6.2882,
+      "n_test": 80000,
+      "n_iterations": 670
+    }
+  },
+  "taxi_fare": {
+    "target": "fare_amount",
+    "log_target": true,
+    "train_rows": 320000,
+    "train_seconds": 23.18,
+    "data_source": "NYC TLC",
+    "n_features": 18,
+    "metrics": {
+      "mae": 2.3218,
+      "rmse": 3.4398,
+      "r2": 0.9168,
+      "mape": 15.4227,
+      "median_abs_error": 1.681,
+      "p90_abs_error": 4.8463,
+      "n_test": 80000,
+      "n_iterations": 526
+    }
+  },
+  "bike_duration": {
+    "target": "duration_min",
+    "log_target": true,
+    "train_rows": 320000,
+    "train_seconds": 28.4,
+    "data_source": "Citi Bike",
+    "n_features": 16,
+    "metrics": {
+      "mae": 2.1825,
+      "rmse": 4.3696,
+      "r2": 0.7156,
+      "mape": 21.6475,
+      "median_abs_error": 1.2016,
+      "p90_abs_error": 4.4914,
+      "n_test": 80000,
+      "n_iterations": 822
+    }
+  },
+  "scooter_derivation": {
+    "classic_median_kmh": 11.8,
+    "electric_median_kmh": 16.222,
+    "observed_electric_ratio": 1.3747,
+    "scooter_vs_ebike_adjustment": 0.98,
+    "scooter_speed_factor_vs_classic": 1.3472,
+    "basis": "Measured from Citi Bike January 2024: median speed of electric vs classic bikes over the same city. The scooter adjustment on top is an assumption (governed 15 mph top speed, no rider-fitness variance), not an observation -- no open shared-scooter trip dataset exists to validate it against."
+  }
+}

@@ -1,0 +1,58 @@
+# =============================================================================
+# Fare structures, in USD. NYC as of 2024.
+#
+# These give the recommender an analytic cost estimate that is independent of
+# the learned fare model. The two are compared in reports/evaluation.json; the
+# agreement between a tariff computed from first principles and a gradient
+# boosting model trained on 400k metered fares is a useful correctness check on
+# both.
+# =============================================================================
+
+taxi:
+  # NYC TLC standard metered fare, rates effective since the Dec 2022 increase.
+  # https://www.nyc.gov/site/tlc/passengers/taxi-fare.page
+  initial_charge: 3.00
+  per_unit_charge: 0.70          # per 1/5 mile above 12 mph, OR per 60s below it
+  unit_miles: 0.2
+  per_minute_slow_traffic: 0.70  # charged instead of distance when crawling
+  slow_traffic_speed_mph: 12.0
+
+  surcharges:
+    mta_state: 0.50
+    improvement: 1.00
+    congestion: 2.50             # yellow taxi trips into/within Manhattan CBD
+    night: 1.00                  # 20:00-06:00
+    weekday_peak: 2.50           # Mon-Fri 16:00-20:00
+  night_hours: [20, 21, 22, 23, 0, 1, 2, 3, 4, 5]
+  peak_hours: [16, 17, 18, 19]
+  tip_rate: 0.20                 # customary; excluded from the headline figure
+  include_tip_in_total: false
+
+bike:
+  # Citi Bike single-ride pricing (non-member), 2024.
+  # https://citibikenyc.com/pricing
+  classic:
+    unlock_fee: 4.79
+    included_minutes: 30
+    overage_per_minute: 0.36
+  electric:
+    unlock_fee: 4.79
+    included_minutes: 0
+    overage_per_minute: 0.36
+  membership:
+    annual_fee: 219.00
+    classic_included_minutes: 45
+    classic_overage_per_minute: 0.36
+    electric_per_minute: 0.24
+  default_plan: single_ride      # single_ride | member
+
+scooter:
+  # Representative of Lime / Bird pricing in NYC-area markets, 2024.
+  # Operators do not publish a rate card, so these are the commonly reported
+  # figures and are the least certain numbers in this file.
+  unlock_fee: 1.00
+  per_minute: 0.39
+  minimum_fare: 1.50
+
+taxes:
+  sales_tax_rate: 0.0            # NYC taxi fares are not subject to sales tax

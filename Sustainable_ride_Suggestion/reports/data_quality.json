@@ -1,0 +1,38 @@
+[
+  {
+    "dataset": "taxi",
+    "initial_rows": 2964624,
+    "cleaned_rows": 2262307,
+    "final_rows": 400000,
+    "retention_pct": 76.31,
+    "subsampled": true,
+    "dropped": {
+      "non-standard rate code (airport flat / negotiated)": 301274,
+      "centroid/meter distance inconsistent": 183251,
+      "same pickup and dropoff zone": 113421,
+      "passenger count outside 1-6": 29565,
+      "implausible fare (incl. negative refunds)": 27572,
+      "implausible duration": 19434,
+      "implausible metered distance": 16865,
+      "unmatched zone id (incl. 264/265 'Unknown')": 10802,
+      "implausible average speed": 133
+    },
+    "source": "NYC TLC"
+  },
+  {
+    "dataset": "bike",
+    "initial_rows": 1888085,
+    "cleaned_rows": 1809482,
+    "final_rows": 400000,
+    "retention_pct": 95.84,
+    "subsampled": true,
+    "dropped": {
+      "round trip / negligible displacement": 54542,
+      "implausible average speed": 15653,
+      "missing timestamp or coordinate": 6089,
+      "implausible duration (incl. undocked bikes)": 2318,
+      "distance beyond micromobility range": 1
+    },
+    "source": "Citi Bike"
+  }
+]

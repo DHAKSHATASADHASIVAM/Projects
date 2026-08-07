@@ -1,0 +1,16 @@
+{
+  "factors": {
+    "taxi": 1.2955,
+    "bike": 1.1677,
+    "scooter": 1.1677
+  },
+  "n_trips": 400000,
+  "taxi_percentiles": {
+    "10": 0.9532,
+    "25": 1.096,
+    "50": 1.2955,
+    "75": 1.5636,
+    "90": 1.9132
+  },
+  "method": "Taxi factor is the median of metered road distance divided by straight-line distance between zone centroids. Bike and scooter factors are scaled from it using the literature ratio, since no odometer reading exists for Citi Bike trips."
+}

@@ -1,0 +1,43 @@
+# Data ------------------------------------------------------------------
+# Raw source data is large (~420 MB) and freely re-downloadable, so it is not
+# committed. `python -m sustainable_ride.cli download` fetches it.
+data/raw/
+data/interim/
+data/processed/
+
+# The taxi zone centroid table IS committed: it is small, it is derived from a
+# shapefile that needs a projection library to read, and having it in the repo
+# means a clone can run without that dependency.
+!data/reference/
+!data/reference/*.csv
+!data/reference/*.json
+
+# Trained models --------------------------------------------------------
+models/*.joblib
+
+# Python ----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# Tooling ---------------------------------------------------------------
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Secrets ---------------------------------------------------------------
+.env
+
+# OS --------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini

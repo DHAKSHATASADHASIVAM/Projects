@@ -1,0 +1,150 @@
+# =============================================================================
+# Sustainable Ride Suggestion - central configuration
+# Every tunable lives here so the modelling assumptions are auditable.
+# =============================================================================
+
+project:
+  name: sustainable-ride-suggestion
+  random_seed: 42
+
+paths:
+  raw: data/raw
+  interim: data/interim
+  processed: data/processed
+  reference: data/reference
+  models: models
+  reports: reports
+  figures: reports/figures
+
+# -----------------------------------------------------------------------------
+# Data acquisition
+# -----------------------------------------------------------------------------
+data:
+  # Both datasets are pulled for the same month so the temporal context
+  # (weather, seasonality, traffic regime) is comparable across modes.
+  month: "2024-01"
+
+  taxi:
+    # NYC TLC Trip Record Data (yellow cabs)
+    url_template: "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_{month}.parquet"
+    zone_lookup_url: "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv"
+    zone_shapefile_url: "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zones.zip"
+    # Rows sampled for model training (full month is ~3M rows).
+    sample_size: 400000
+
+  bike:
+    # Citi Bike system data. Filename conventions have drifted over the years,
+    # so the downloader tries each pattern in order.
+    url_templates:
+      - "https://s3.amazonaws.com/tripdata/{ym}-citibike-tripdata.zip"
+      - "https://s3.amazonaws.com/tripdata/{ym}-citibike-tripdata.csv.zip"
+      - "https://s3.amazonaws.com/tripdata/{ym}-citbike-tripdata.csv.zip"
+    sample_size: 400000
+
+  synthetic:
+    n_taxi: 120000
+    n_bike: 120000
+
+# -----------------------------------------------------------------------------
+# Cleaning thresholds. Public trip data is noisy: GPS glitches, meter errors,
+# forgotten dock returns. Every filter is counted in reports/data_quality.json.
+# -----------------------------------------------------------------------------
+cleaning:
+  taxi:
+    min_duration_min: 1.0
+    max_duration_min: 120.0
+    min_distance_km: 0.3
+    max_distance_km: 60.0
+    min_fare_usd: 2.5
+    max_fare_usd: 250.0
+    max_speed_kmh: 100.0
+    min_speed_kmh: 1.0
+  bike:
+    min_duration_min: 1.0
+    max_duration_min: 120.0
+    min_distance_km: 0.2
+    max_distance_km: 30.0
+    max_speed_kmh: 45.0
+    min_speed_kmh: 2.0
+
+# -----------------------------------------------------------------------------
+# Routing
+# -----------------------------------------------------------------------------
+routing:
+  provider: auto          # auto | ors | haversine
+  ors:
+    base_url: "https://api.openrouteservice.org"
+    timeout_s: 15
+    cache_size: 4096
+    profiles:
+      taxi: driving-car
+      bike: cycling-regular
+      scooter: cycling-electric
+  # Circuity = road distance / straight-line distance. Defaults are literature
+  # values; `cli prepare` re-fits them empirically from the TLC meter readings
+  # and overwrites data/reference/circuity.json.
+  circuity_defaults:
+    taxi: 1.42
+    bike: 1.28
+    scooter: 1.28
+
+# -----------------------------------------------------------------------------
+# Modes
+# -----------------------------------------------------------------------------
+modes:
+  taxi:
+    label: "Yellow Taxi"
+    max_distance_km: 60.0
+    weather_sensitive: false
+    access_egress_min: 4.0      # hailing / waiting for pickup
+  bike:
+    label: "Citi Bike (classic)"
+    max_distance_km: 12.0
+    weather_sensitive: true
+    access_egress_min: 5.0      # walk to dock + dock to destination
+  scooter:
+    label: "E-Scooter"
+    max_distance_km: 15.0
+    weather_sensitive: true
+    access_egress_min: 3.0      # dockless, usually closer
+
+# -----------------------------------------------------------------------------
+# Model training
+# -----------------------------------------------------------------------------
+training:
+  test_size: 0.2
+  cv_folds: 3
+  n_jobs: -1
+  models:
+    taxi_duration:
+      max_iter: 1200
+      learning_rate: 0.08
+      max_depth: 8
+      min_samples_leaf: 40
+      l2_regularization: 1.0
+    taxi_fare:
+      max_iter: 1200
+      learning_rate: 0.08
+      max_depth: 8
+      min_samples_leaf: 40
+      l2_regularization: 1.0
+    bike_duration:
+      max_iter: 1200
+      learning_rate: 0.10
+      max_depth: 7
+      min_samples_leaf: 40
+      l2_regularization: 1.0
+
+# -----------------------------------------------------------------------------
+# Recommender
+# -----------------------------------------------------------------------------
+recommender:
+  default_weights:
+    cost: 0.34
+    time: 0.33
+    co2: 0.33
+  # Rain suppresses micromobility demand sharply; below this probability we
+  # keep bike/scooter but penalise them, above it we mark them infeasible.
+  rain_infeasible_threshold: 0.6
+  night_hours: [22, 23, 0, 1, 2, 3, 4, 5]
+  night_micromobility_penalty: 0.15

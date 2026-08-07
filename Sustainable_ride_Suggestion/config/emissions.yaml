@@ -1,0 +1,90 @@
+# =============================================================================
+# CO2-equivalent emission factors, in grams per passenger-kilometre.
+#
+# Every number below is sourced. The distinction between *operational* and
+# *lifecycle* emissions matters a great deal for micromobility: a shared
+# e-scooter emits nothing from a tailpipe, but its manufacturing, its short
+# service life, and the van that redistributes it overnight are far from free.
+# Reporting only tailpipe emissions is the single most common way sustainability
+# comparisons are made to flatter light electric vehicles.
+#
+# Default reporting basis for the recommender is `lifecycle`.
+# =============================================================================
+
+basis: lifecycle          # operational | lifecycle
+
+factors:
+
+  taxi:
+    operational_g_per_km: 248.5
+    lifecycle_g_per_km: 310.0
+    source: >-
+      EPA, "Greenhouse Gas Emissions from a Typical Passenger Vehicle"
+      (EPA-420-F-23-014): 400 g CO2/mile tailpipe for the average US passenger
+      vehicle = 248.5 g/km. Lifecycle uplift (~25%) covers fuel production and
+      vehicle manufacture, per ICCT (2021) "A global comparison of the
+      life-cycle greenhouse gas emissions of combustion engine and electric
+      passenger cars".
+    notes: >-
+      Applied per vehicle-kilometre, then divided across occupants. NYC's yellow
+      fleet is hybrid-heavy, which would argue for a lower figure; the deadhead
+      multiplier below pushes in the opposite direction and dominates.
+
+  bike:
+    operational_g_per_km: 0.0
+    lifecycle_g_per_km: 8.0
+    source: >-
+      European Cyclists' Federation (2011), "Cycle more Often 2 cool down the
+      planet": ~5 g/km manufacturing plus food-energy overhead, giving 16-21
+      g/km for an average diet. We use 8 g/km for a shared classic bike, whose
+      manufacturing burden is amortised over far more trips than a private bike,
+      and exclude the food-energy term (contested, and it would also apply to
+      the walking legs of every other mode).
+    notes: "Zero tailpipe. Rebalancing vans are counted in the fleet_ops term."
+
+  scooter:
+    operational_g_per_km: 12.0
+    lifecycle_g_per_km: 65.0
+    source: >-
+      Hollingsworth, Copeland & Johnson (2019), "Are e-scooters polluting?",
+      Environmental Research Letters 14(8): base-case 141 g CO2e/km for the
+      2018 shared fleet. Modern fleets with swappable batteries, e-bike-grade
+      frames and ~2-year service lives are substantially better; ITF (2020)
+      "Good to Go? Assessing the Environmental Performance of New Mobility"
+      reports 65-90 g/km. We take 65 g/km as an optimistic-but-defensible
+      central estimate.
+    notes: >-
+      Operational term is grid electricity for charging (12 g/km at the US
+      average grid intensity). The lifecycle term is dominated by manufacturing
+      and by the collection vans, not by charging.
+
+# -----------------------------------------------------------------------------
+# Deadheading: the distance a vehicle travels without a paying passenger.
+# For taxis this is large and routinely omitted from mode comparisons.
+# -----------------------------------------------------------------------------
+deadhead_multiplier:
+  taxi: 1.45
+  bike: 1.00
+  scooter: 1.10
+  source: >-
+    Taxi: Cramer & Krueger (2016) and the NYC TLC Factbook put yellow-cab
+    occupancy at roughly 50-60% of on-shift mileage, so each revenue kilometre
+    carries ~1.45 vehicle-kilometres. Scooter: a modest uplift for the
+    collection and redistribution vans, already partly inside the ITF lifecycle
+    figure, so kept small to avoid double counting.
+
+# -----------------------------------------------------------------------------
+# Occupancy: emissions are per *passenger*-km, so a shared taxi ride splits its
+# footprint. Micromobility is single-occupant by construction.
+# -----------------------------------------------------------------------------
+occupancy:
+  taxi_default: 1.0
+  bike: 1.0
+  scooter: 1.0
+
+# -----------------------------------------------------------------------------
+# Context for the user-facing "you saved X" message.
+# -----------------------------------------------------------------------------
+equivalences:
+  tree_absorption_g_per_day: 60.0      # a mature tree absorbs ~22 kg CO2/yr
+  smartphone_charge_g: 8.2             # EPA GHG Equivalencies Calculator

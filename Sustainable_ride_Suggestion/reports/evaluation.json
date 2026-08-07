@@ -1,0 +1,343 @@
+{
+  "summary": {
+    "taxi_duration": {
+      "mae": 2.984216553748398,
+      "rmse": 4.387873449271051,
+      "r2": 0.7616380795452593,
+      "mape": 24.296678255536417,
+      "median_abs_error": 2.1479529679896574,
+      "p90_abs_error": 6.288213507232604,
+      "n_test": 80000,
+      "n_iterations": 670
+    },
+    "taxi_fare": {
+      "mae": 2.3218453903447323,
+      "rmse": 3.4397975574299857,
+      "r2": 0.9167862085533274,
+      "mape": 15.422664157573895,
+      "median_abs_error": 1.6809658123311122,
+      "p90_abs_error": 4.8463368235986275,
+      "n_test": 80000,
+      "n_iterations": 526
+    },
+    "bike_duration": {
+      "mae": 2.182507583611641,
+      "rmse": 4.36956434119945,
+      "r2": 0.7155753861434735,
+      "mape": 21.647450373236044,
+      "median_abs_error": 1.2016307802853188,
+      "p90_abs_error": 4.49140703700691,
+      "n_test": 80000,
+      "n_iterations": 822
+    }
+  },
+  "taxi_duration_by_distance": [
+    {
+      "band": "0-1 km",
+      "n": 1929,
+      "mean_actual": 4.801650250561604,
+      "mae": 2.0199071440290095,
+      "mape": 54.50010942134291,
+      "bias": 1.389329796726127
+    },
+    {
+      "band": "1-2 km",
+      "n": 13045,
+      "mean_actual": 7.735340488054172,
+      "mae": 2.1447835568741924,
+      "mape": 30.873336823928398,
+      "bias": 0.2741797075455829
+    },
+    {
+      "band": "2-4 km",
+      "n": 18636,
+      "mean_actual": 12.32795664305645,
+      "mae": 2.751937638208113,
+      "mape": 22.448724631673265,
+      "bias": -0.6818095108111689
+    },
+    {
+      "band": "4-8 km",
+      "n": 9762,
+      "mean_actual": 19.0710766236427,
+      "mae": 3.605527014405506,
+      "mape": 18.79895463150588,
+      "bias": -1.2298553065096571
+    },
+    {
+      "band": "8-15 km",
+      "n": 3801,
+      "mean_actual": 24.393878803823554,
+      "mae": 4.2965448891623605,
+      "mape": 17.401403963463473,
+      "bias": -0.7030602445589199
+    },
+    {
+      "band": "15+ km",
+      "n": 2827,
+      "mean_actual": 33.204474708171205,
+      "mae": 5.36962597926303,
+      "mape": 15.580844139785139,
+      "bias": -1.3693060556607095
+    }
+  ],
+  "bike_duration_by_distance": [
+    {
+      "band": "0-1 km",
+      "n": 11159,
+      "mean_actual": 3.807134447531141,
+      "mae": 1.1148598195109114,
+      "mape": 27.065092780093714,
+      "bias": -0.2624695149357686
+    },
+    {
+      "band": "1-2 km",
+      "n": 17194,
+      "mean_actual": 7.065169342987864,
+      "mae": 1.7201622920971162,
+      "mape": 21.92614238907563,
+      "bias": -0.4027190483328534
+    },
+    {
+      "band": "2-4 km",
+      "n": 14338,
+      "mean_actual": 12.141485354768214,
+      "mae": 2.6453511534266636,
+      "mape": 19.67993975865887,
+      "bias": -0.5556655460024437
+    },
+    {
+      "band": "4-8 km",
+      "n": 6174,
+      "mean_actual": 20.590271266601878,
+      "mae": 3.7672162305625267,
+      "mape": 16.938206569818536,
+      "bias": -0.6075402738862891
+    },
+    {
+      "band": "8-15 km",
+      "n": 1096,
+      "mean_actual": 33.13301044708029,
+      "mae": 5.17057781895043,
+      "mape": 14.721145144084494,
+      "bias": -0.5511096898200257
+    },
+    {
+      "band": "15+ km",
+      "n": 39,
+      "mean_actual": 50.99924059829061,
+      "mae": 7.245135472598711,
+      "mape": 13.571247488889702,
+      "bias": -2.373055152458993
+    }
+  ],
+  "taxi_duration_by_hour": [
+    {
+      "hour": 0,
+      "n": 1379,
+      "mae": 2.722272255353551,
+      "mean_actual": 13.471464829586658,
+      "bias": -0.40127328619447106
+    },
+    {
+      "hour": 1,
+      "n": 883,
+      "mae": 2.5774724325787814,
+      "mean_actual": 12.466591166477917,
+      "bias": -0.19502799446486893
+    },
+    {
+      "hour": 2,
+      "n": 630,
+      "mae": 2.5262474109745834,
+      "mean_actual": 11.825952380952382,
+      "bias": -0.32670348484671635
+    },
+    {
+      "hour": 3,
+      "n": 399,
+      "mae": 2.4812402891008762,
+      "mean_actual": 11.606474519632416,
+      "bias": -0.15686460023123097
+    },
+    {
+      "hour": 4,
+      "n": 199,
+      "mae": 2.6716719956005046,
+      "mean_actual": 13.219179229480737,
+      "bias": -0.28890431802086514
+    },
+    {
+      "hour": 5,
+      "n": 221,
+      "mae": 2.3240563215964003,
+      "mean_actual": 11.844796380090497,
+      "bias": -0.15753448528028516
+    },
+    {
+      "hour": 6,
+      "n": 614,
+      "mae": 2.511620056890078,
+      "mean_actual": 12.174267100977199,
+      "bias": -0.6466554937517838
+    },
+    {
+      "hour": 7,
+      "n": 1355,
+      "mae": 2.710104617790754,
+      "mean_actual": 12.812632226322261,
+      "bias": -0.4684799955394653
+    },
+    {
+      "hour": 8,
+      "n": 1958,
+      "mae": 3.1937382138844446,
+      "mean_actual": 13.87741743275451,
+      "bias": -0.7539634836766919
+    },
+    {
+      "hour": 9,
+      "n": 2209,
+      "mae": 3.4600878348435566,
+      "mean_actual": 14.357635430813339,
+      "bias": -0.5764932015937856
+    },
+    {
+      "hour": 10,
+      "n": 2443,
+      "mae": 3.591140731514365,
+      "mean_actual": 15.130372492836676,
+      "bias": -0.7086705434546482
+    },
+    {
+      "hour": 11,
+      "n": 2546,
+      "mae": 3.3733169026629692,
+      "mean_actual": 14.595705682115737,
+      "bias": -0.6090408656469486
+    },
+    {
+      "hour": 12,
+      "n": 2747,
+      "mae": 3.1819658257777115,
+      "mean_actual": 14.582010678315738,
+      "bias": -0.5682266546927079
+    },
+    {
+      "hour": 13,
+      "n": 2741,
+      "mae": 3.274618642080953,
+      "mean_actual": 14.947914386476954,
+      "bias": -0.5564965502647755
+    },
+    {
+      "hour": 14,
+      "n": 3016,
+      "mae": 3.2428288751360665,
+      "mean_actual": 15.277757515473033,
+      "bias": -0.4111851020527213
+    },
+    {
+      "hour": 15,
+      "n": 3112,
+      "mae": 3.3205028730716055,
+      "mean_actual": 15.8730559125964,
+      "bias": -0.652300429398503
+    },
+    {
+      "hour": 16,
+      "n": 3218,
+      "mae": 3.323151452643188,
+      "mean_actual": 15.613631655272425,
+      "bias": -0.781117269743357
+    },
+    {
+      "hour": 17,
+      "n": 3432,
+      "mae": 3.147052836962042,
+      "mean_actual": 15.090608003108004,
+      "bias": -0.47230433882352046
+    },
+    {
+      "hour": 18,
+      "n": 3598,
+      "mae": 2.828562485561583,
+      "mean_actual": 14.078585325180656,
+      "bias": -0.2963242029131662
+    },
+    {
+      "hour": 19,
+      "n": 3136,
+      "mae": 2.632573561527367,
+      "mean_actual": 13.434550382653061,
+      "bias": -0.39939292263410137
+    },
+    {
+      "hour": 20,
+      "n": 2793,
+      "mae": 2.52003879553838,
+      "mean_actual": 13.290517961570592,
+      "bias": -0.5347935722414023
+    },
+    {
+      "hour": 21,
+      "n": 2956,
+      "mae": 2.483543723394449,
+      "mean_actual": 13.2119700045106,
+      "bias": -0.24649040598413918
+    },
+    {
+      "hour": 22,
+      "n": 2516,
+      "mae": 2.5742533399115044,
+      "mean_actual": 13.42199920508744,
+      "bias": -0.3715572620621655
+    },
+    {
+      "hour": 23,
+      "n": 1899,
+      "mae": 2.698565944946415,
+      "mean_actual": 14.030059680533613,
+      "bias": -0.46455863483786025
+    }
+  ],
+  "fare_estimator_comparison": {
+    "n": 20000,
+    "learned_model": {
+      "mae": 2.310928221547448,
+      "rmse": 3.409247867570922,
+      "bias": -0.27515044419106305,
+      "mape": 15.407560787392308
+    },
+    "tariff_oracle_duration": {
+      "mae": 1.64088,
+      "rmse": 2.4791637864409037,
+      "bias": -0.639471,
+      "mape": 10.30522489378088
+    },
+    "tariff_predicted_duration": {
+      "mae": 2.4714345,
+      "rmse": 3.5070222176370653,
+      "bias": -0.9559834999999999,
+      "mape": 16.727943731040977
+    },
+    "correlation_model_vs_tariff": 0.9700837796941076,
+    "best_deployable_estimator": "learned_model",
+    "oracle_advantage_usd": 0.831,
+    "interpretation": "Only `learned_model` and `tariff_predicted_duration` are deployable; `tariff_oracle_duration` is given the realised trip duration and so is an upper bound, not a competitor. The gap between the oracle and predicted tariff variants is fare error caused purely by duration error propagating through the rate card, which is the dominant term -- the rate card itself is nearly exact."
+  },
+  "scooter_derivation": {
+    "classic_median_kmh": 11.8,
+    "electric_median_kmh": 16.222,
+    "observed_electric_ratio": 1.3747,
+    "scooter_vs_ebike_adjustment": 0.98,
+    "scooter_speed_factor_vs_classic": 1.3472,
+    "basis": "Measured from Citi Bike January 2024: median speed of electric vs classic bikes over the same city. The scooter adjustment on top is an assumption (governed 15 mph top speed, no rider-fitness variance), not an observation -- no open shared-scooter trip dataset exists to validate it against."
+  },
+  "figures": [
+    "reports\\figures\\predicted_vs_actual.png",
+    "reports\\figures\\error_by_distance.png",
+    "reports\\figures\\speed_by_hour.png",
+    "reports\\figures\\mode_tradeoffs.png"
+  ]
+}
